@@ -1,31 +1,26 @@
-package com.example.score.score.domain;
+package com.example.score.domain;
 
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "PRODUCT")
-public class Product {
+public class Product implements Serializable {
 
     @Id
-    @Column(name = "ID")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "TITLE", unique = true)
     @Type(type = "text")
     private String title;
 
-    @Column(name = "DESCRIPTION")
-   @Type(type = "text")
+    @Type(type = "text")
     private String description;
 
-    @Column(name = "PRICE")
     private Integer price;
 
-    @Column(name = "AMOUNT")
     private Integer amount;
 
     public Product() {
@@ -78,5 +73,5 @@ public class Product {
     public void setAmount(Integer amount) {
         this.amount = amount;
     }
-}
+    }
 

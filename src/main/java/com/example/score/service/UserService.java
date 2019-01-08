@@ -1,8 +1,10 @@
-package com.example.score.score.service;
+package com.example.score.service;
 
-import com.example.score.score.domain.Role;
-import com.example.score.score.domain.User;
-import com.example.score.score.repositories.UserRepos;
+import com.example.score.domain.Cart;
+import com.example.score.domain.Role;
+import com.example.score.domain.User;
+import com.example.score.repositories.CartRepos;
+import com.example.score.repositories.UserRepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -21,6 +23,9 @@ public class UserService implements UserDetailsService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+
+    @Autowired
+    private CartRepos cartRepos;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -42,7 +47,10 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setActive(true);
         user.setRoles(Collections.singleton(Role.USER));
+        Cart c = new Cart();
+        user.setCart(c);
 
+        cartRepos.save(c);
         userRepo.save(user);
 
         return true;
@@ -51,6 +59,8 @@ public class UserService implements UserDetailsService {
     public List<User> findAll() {
         return userRepo.findAll();
     }
+
+
     public void saveUser(User user, String username, String password, Map<String, String> form) {
         user.setUsername(username);
         user.setPassword(passwordEncoder.encode(password));

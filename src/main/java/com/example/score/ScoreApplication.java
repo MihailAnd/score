@@ -1,4 +1,4 @@
-package com.example.score.score;
+package com.example.score;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

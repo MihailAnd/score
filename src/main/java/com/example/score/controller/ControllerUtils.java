@@ -1,4 +1,4 @@
-package com.example.score.score.controller;
+package com.example.score.controller;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;

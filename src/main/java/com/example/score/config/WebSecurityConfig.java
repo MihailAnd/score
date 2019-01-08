@@ -1,6 +1,6 @@
-package com.example.score.score.config;
+package com.example.score.config;
 
-import com.example.score.score.service.UserService;
+import com.example.score.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/registration","/static/**").permitAll()
+                .antMatchers("/",  "/registration","/static/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()

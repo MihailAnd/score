@@ -1,10 +1,10 @@
-package com.example.score.score.controller;
+package com.example.score.controller;
 
-import com.example.score.score.domain.Product;
-import com.example.score.score.domain.Purchase;
-import com.example.score.score.domain.User;
-import com.example.score.score.repositories.ProductRrepos;
-import com.example.score.score.repositories.PurchaseRepos;
+import com.example.score.domain.CartItem;
+import com.example.score.repositories.CartItemRepos;
+import com.example.score.repositories.ProductRrepos;
+import com.example.score.domain.Product;
+import com.example.score.domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -13,17 +13,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 @Controller
-public class PurchaseController {
+public class CartItemController {
 
     @Autowired
     ProductRrepos productRrepos;
 
     @Autowired
-    PurchaseRepos purchaseRepos;
+    CartItemRepos cartItemRepos;
 
     @GetMapping("/menu")
     public String menu(Model model){
@@ -33,23 +30,27 @@ public class PurchaseController {
     }
 
     @PostMapping("/menu")
-    public String pur (
-            Purchase purchase,
+    public String prod (
             @RequestParam Integer productAmount,
-            @RequestParam Product product,
+            @RequestParam Long productId,
             @AuthenticationPrincipal User user,
             Model model
     ){
-        purchase.setCoast(product.getPrice()*productAmount);
-        purchase.setDateTime(new LocalDateTime());
-        purchase.setProduct(product);
-        purchase.setUser(user);
-        purchase.setProductAmount(productAmount);
+        Iterable<Product> products = productRrepos.findAll();
+        Product p = productRrepos.getOne(productId);
+        CartItem cartItem = new CartItem();
 
 
 
-        purchaseRepos.save(purchase);
+        cartItem.setCart(user.getCart());
+        cartItem.setProduct(p);
+        cartItem.setProductAmount(productAmount);
 
-        return "";
+
+        model.addAttribute("products", products);
+
+        cartItemRepos.save(cartItem);
+
+        return "/menu";
     }
 }

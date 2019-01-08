@@ -1,6 +1,6 @@
-package com.example.score.score.repositories;
+package com.example.score.repositories;
 
-import com.example.score.score.domain.User;
+import com.example.score.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepos extends JpaRepository<User, Integer> {

@@ -1,4 +1,4 @@
-package com.example.score.score.domain;
+package com.example.score.domain;
 
 import org.springframework.security.core.GrantedAuthority;
 

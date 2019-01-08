@@ -12,20 +12,23 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/main">Заявки</a>
+                <a class="nav-link" href="/menu">CartProd</a>
+            </li>
+
+            <li class="nav-item">
                 <a class="nav-link" href="/hi">prod</a>
             </li>
-
+            <li class="nav-item">
+            <a class="nav-link" href="/cart">cart</a>
+            </li>
 
             <#if isAdmin>
-            <li class="nav-item">
-                <a class="nav-link" href="/user">Список пользователей</a>
-            </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/adminPage">Поиск заявок</a>
+                    <a class="nav-link" href="/user">Список пользователей</a>
                 </li>
-            <li class="nav-item">
-            </li>
+
+
+
             </#if>
                 <#if user??>
             <li class="nav-item">

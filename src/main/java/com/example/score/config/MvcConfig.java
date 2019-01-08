@@ -1,4 +1,4 @@
-package com.example.score.score.config;
+package com.example.score.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;

@@ -1,7 +1,7 @@
-package com.example.score.score.controller;
+package com.example.score.controller;
 
-import com.example.score.score.domain.Product;
-import com.example.score.score.repositories.ProductRrepos;
+import com.example.score.domain.Product;
+import com.example.score.repositories.ProductRrepos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,8 +32,8 @@ public class MainController {
     @PostMapping("/hi")
     public String add(@RequestParam String title,
                       @RequestParam String description,
-                              @RequestParam Integer price,
-                              @RequestParam Integer amount,
+                      @RequestParam Integer price,
+                      @RequestParam Integer amount,
                       Map<String, Object> model){
         Product p = new Product(title, description, price,amount);
 
